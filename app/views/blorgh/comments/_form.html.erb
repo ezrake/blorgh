@@ -1,0 +1,9 @@
+<h3>New Comment</h3>
+<%= form_with model: [@article, @article.comments.build] do |form|
+%>
+  <p>
+    <%=form.label :text%><br>
+    <%= form.text_area :text%>
+  </p>
+  <%= form.submit %>
+<%end%>
