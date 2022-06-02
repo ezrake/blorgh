@@ -1,6 +1,10 @@
 <p style="color: green"><%= notice %></p>
 <%= render @article %>
 <div>
+  <p>
+    <b>Author:</b>
+    <%= @article.author.name %>
+  </p>
   <h3>Comments</h3>
   <%= render @article.comments %>
   <%= render "blorgh/comments/form" %>
