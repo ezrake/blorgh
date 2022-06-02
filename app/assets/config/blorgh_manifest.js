@@ -1,1 +1,1 @@
-//= link_directory ../stylesheets/blorgh .css
+//= link_directory ../stylesheets/blorgh/ .css
