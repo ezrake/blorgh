@@ -9,6 +9,12 @@ module Blorgh
 
     # GET /articles/1
     def show
+      @article.increment(:view_count)
+      if @article.view_count > 10
+        @article.status_overviewed!
+      else
+        @article.status_viewed!
+      end
     end
 
     # GET /articles/new
@@ -23,6 +29,7 @@ module Blorgh
     # POST /articles
     def create
       @article = Article.new(article_params)
+      @article.status_posted!
 
       if @article.save
         redirect_to @article, notice: "Article was successfully created."
