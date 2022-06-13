@@ -1,6 +1,7 @@
 module Blorgh
   class ArticlesController < ApplicationController
     before_action :set_article, only: %i[ show edit update destroy ]
+    after_action :generate_csv, only: [:create]
 
     # GET /articles
     def index
@@ -58,6 +59,11 @@ module Blorgh
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])
+    end
+
+    def generate_csv
+      user = main_app.scope.current_user
+      Blorgh::CreateReportsJob.perform_now(user)
     end
 
     # Only allow a list of trusted parameters through.

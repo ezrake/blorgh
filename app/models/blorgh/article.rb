@@ -15,7 +15,7 @@ module Blorgh
     private
 
     def set_author
-      self.author = User.find_or_create_by(name: author_name)
+      self.author = User.find_or_create_by(email: author_name)
     end
   end
 end
