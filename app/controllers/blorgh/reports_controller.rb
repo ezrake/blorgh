@@ -10,7 +10,7 @@ module Blorgh
       report = Report.find_by(id: params[:id])
       send_file(
         report.file_url,
-        filename: "csv_report",
+        filename: report.created_at.strftime("%B %I:%M Report"),
         type: "text/csv",
       )
     end

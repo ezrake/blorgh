@@ -3,7 +3,7 @@
 <% if !@reports.nil? %>
     <ul>
         <% @reports.each do |report| %>
-            <li><%= link_to report.file_url, report_download_path(report) %></li>
+            <li><%= link_to report.created_at.strftime("%B %I:%M Report"), report_download_path(report) %></li>
         <%end%>
     </ul>
 <% else %>
