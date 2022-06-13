@@ -2,16 +2,14 @@ module Blorgh
   class ReportsController < ApplicationController
 
     def index
-      @reports = Report.all
-    end
-
-    def show
+      user = main_app.scope.current_user
+      @reports = Report.where(user_id: user.id)
     end
 
     def download
-      file = generate_csv
+      report = Report.find_by(id: params[:id])
       send_file(
-        file,
+        report.file_url,
         filename: "csv_report",
         type: "text/csv",
       )

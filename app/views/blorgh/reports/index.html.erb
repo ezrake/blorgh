@@ -1,0 +1,11 @@
+<h1>Reports</h1>
+
+<% if !@reports.nil? %>
+    <ul>
+        <% @reports.each do |report| %>
+            <li><%= link_to report.file_url, report_download_path(report) %></li>
+        <%end%>
+    </ul>
+<% else %>
+     <p>No reports currently</p>
+<% end %>

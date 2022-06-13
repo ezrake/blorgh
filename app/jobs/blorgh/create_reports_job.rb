@@ -5,7 +5,7 @@ module Blorgh
 
     def perform(*args)
       user = args[0]
-      file = "#{Rails.root}/public/#{user.id}_data.csv"
+      file = "#{Rails.root}/public/#{Time.now}_data.csv"
       articles = Article.where(author_id: user.id)
       articles_created = articles.count
       headers = ["Name", "Articles_Created", "Date_Created"]
@@ -17,6 +17,7 @@ module Blorgh
         user_id: user.id, 
         file_url: file
       )
+      @report.save
     end
   end
 end
